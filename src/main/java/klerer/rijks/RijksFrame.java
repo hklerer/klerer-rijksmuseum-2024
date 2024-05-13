@@ -1,2 +1,4 @@
-package klerer.rijks;public class RijksFrame {
+package klerer.rijks;
+
+public class RijksFrame {
 }

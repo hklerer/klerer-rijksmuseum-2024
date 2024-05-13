@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public class ArtImage {
+package klerer.rijks.json;
+
+public class ArtImage {
 }

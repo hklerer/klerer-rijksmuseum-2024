@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public class RijksCollection {
+package klerer.rijks.json;
+
+public class RijksCollection {
 }
