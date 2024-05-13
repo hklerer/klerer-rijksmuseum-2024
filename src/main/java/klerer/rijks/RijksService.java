@@ -9,7 +9,7 @@ public interface RijksService {
 
     @GET("/api/nl/collection")
     Single<ArtObject> artObject(
-            //@Query("key") String apikey,
+            @Query("key") String apikey,
             @Query("p") int pageNum,
             @Query("q") String num,
             @Query("involvedMaker") String involvedMaker

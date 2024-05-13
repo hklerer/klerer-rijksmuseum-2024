@@ -1,4 +1,4 @@
 package klerer.rijks.json;
 
-public class ArtImage {
+public class WebImage {
 }

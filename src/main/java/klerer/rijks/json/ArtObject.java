@@ -1,9 +1,9 @@
 package klerer.rijks.json;
 
 public class ArtObject {
-    Title title;
-    LongTitle longTitle;
+    public String title;
+    public String longTitle;
     WebImage webImage;
-    PrincipalOrFirstMaker principalOrFirstMaker;
+    public String principalOrFirstMaker;
 
 }
