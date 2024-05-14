@@ -8,20 +8,20 @@ import retrofit2.http.Query;
 
 public interface RijksService {
 
-    @GET("/api/nl/collection")
+    @GET("/api/en/collection")
     Single<RijksCollection> pageNum(
             @Query("key") String apikey,
             @Query("p") int pageNum
     );
 
-    @GET("/api/nl/collection")
+    @GET("/api/en/collection")
     Single<RijksCollection> queryAndPageNum(
             @Query("key") String apikey,
             @Query("q") String query,
             @Query("p") int pageNum
             );
 
-    @GET("/api/nl/collection")
+    @GET("/api/en/collection")
     Single<RijksCollection> involvedMakerAndPageNum(
             @Query("key") String apikey,
             @Query("involvedMaker") String involvedMaker,

@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RijksServiceFactory {
     public RijksService getService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://data.rijksmuseum.nl/")
+                .baseUrl("https://www.rijksmuseum.nl/en")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();

@@ -33,7 +33,7 @@ class RijksServiceTest {
 
         // when
         RijksCollection rijksCollection = service.queryAndPageNum(keyString,
-                "query",
+                "green",
                 1).blockingGet();
 
         // then
