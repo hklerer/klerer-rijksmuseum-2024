@@ -13,17 +13,12 @@ class RijksServiceTest {
         RijksService service = new RijksServiceFactory().getService();
 
         // when
-        ArtObject artObject = service.artObject(
-                apiKey.toString(),
-                15,
-                "25",
-                "involved maker"
-        ).blockingGet();
+        ArtObject artObject = service.artObject(apiKey.toString()).blockingGet();
 
         // then
-        assertNotEquals(0, artObject.title);
-        assertNotEquals(0, artObject.longTitle);
-        assertNotEquals(0, artObject.principalOrFirstMaker);
+        assertNotNull(artObject.title);
+        assertNotNull(artObject.longTitle);
+        assertNotNull(artObject.principalOrFirstMaker);
     }
 
 }
