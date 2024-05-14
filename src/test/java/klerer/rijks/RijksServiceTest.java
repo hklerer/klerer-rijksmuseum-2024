@@ -1,6 +1,5 @@
 package klerer.rijks;
 
-import klerer.rijks.json.ArtObject;
 import klerer.rijks.json.RijksCollection;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +16,10 @@ class RijksServiceTest {
         RijksCollection rijksCollection = service.pageNum(apiKey.toString(), 1).blockingGet();
 
         // then
-        assertNotNull(rijksCollection.rijksCollection[0].title);
-        assertNotNull(rijksCollection.rijksCollection[0].longTitle);
-        assertNotNull(rijksCollection.rijksCollection[0].principalOrFirstMaker);
-        assertNotNull(rijksCollection.rijksCollection[0].webImage.url);
+        assertNotNull(rijksCollection.artObjects[0].title);
+        assertNotNull(rijksCollection.artObjects[0].longTitle);
+        assertNotNull(rijksCollection.artObjects[0].principalOrFirstMaker);
+        assertNotNull(rijksCollection.artObjects[0].webImage.url);
     }
 
     @Test
@@ -35,10 +34,10 @@ class RijksServiceTest {
                 1).blockingGet();
 
         // then
-        assertNotNull(rijksCollection.rijksCollection[0].title);
-        assertNotNull(rijksCollection.rijksCollection[0].longTitle);
-        assertNotNull(rijksCollection.rijksCollection[0].principalOrFirstMaker);
-        assertNotNull(rijksCollection.rijksCollection[0].webImage.url);
+        assertNotNull(rijksCollection.artObjects[0].title);
+        assertNotNull(rijksCollection.artObjects[0].longTitle);
+        assertNotNull(rijksCollection.artObjects[0].principalOrFirstMaker);
+        assertNotNull(rijksCollection.artObjects[0].webImage.url);
     }
 
     @Test
@@ -53,10 +52,10 @@ class RijksServiceTest {
                 1).blockingGet();
 
         // then
-        assertNotNull(rijksCollection.rijksCollection[0].title);
-        assertNotNull(rijksCollection.rijksCollection[0].longTitle);
-        assertNotNull(rijksCollection.rijksCollection[0].principalOrFirstMaker);
-        assertNotNull(rijksCollection.rijksCollection[0].webImage.url);
+        assertNotNull(rijksCollection.artObjects[0].title);
+        assertNotNull(rijksCollection.artObjects[0].longTitle);
+        assertNotNull(rijksCollection.artObjects[0].principalOrFirstMaker);
+        assertNotNull(rijksCollection.artObjects[0].webImage.url);
     }
 
 }
