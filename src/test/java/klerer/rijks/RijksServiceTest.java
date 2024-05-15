@@ -52,7 +52,7 @@ class RijksServiceTest {
 
         // when
         RijksCollection rijksCollection = service.involvedMakerAndPageNum(keyString,
-                "Leonardo Da Vinci",
+                "Johannes Vermeer",
                 1).blockingGet();
 
         // then
