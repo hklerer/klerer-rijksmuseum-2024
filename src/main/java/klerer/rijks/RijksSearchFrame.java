@@ -149,6 +149,7 @@ public class RijksSearchFrame extends JFrame {
         });
         return label;
     }
+
     public static void main(String[] args) {
         RijksSearchFrame frame = new RijksSearchFrame();
         frame.setVisible(true);

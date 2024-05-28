@@ -4,7 +4,7 @@ public class ArtObjects {
 
     public ArtObject [] artObjects;
 
-    public ArtObject [] getArtObjects () {
+    public ArtObject [] getArtObjects() {
         return artObjects;
     }
 
