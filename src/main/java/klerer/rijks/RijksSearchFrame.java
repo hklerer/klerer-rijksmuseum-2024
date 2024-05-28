@@ -105,7 +105,7 @@ public class RijksSearchFrame extends JFrame {
     private void handleResponse(ArtObjects artObjects) {
         imagePanel.removeAll();
 
-        if (artObjects == null) {
+        if (artObjects.getArtObjects() == null) {
             JLabel noResultsLabel = new JLabel("No results found for your search.");
             imagePanel.add(noResultsLabel);
             return;
@@ -140,7 +140,11 @@ public class RijksSearchFrame extends JFrame {
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new ImageFrame(art.title, art.principalOrFirstMaker, art.webImage.url).setVisible(true);
+                try {
+                    new ImageFrame(art.title, art.principalOrFirstMaker, art.webImage.url).setVisible(true);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         return label;
