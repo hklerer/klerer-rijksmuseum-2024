@@ -30,11 +30,11 @@ public class RijksSearchFrame extends JFrame {
 
     public RijksSearchFrame() {
         setTitle("Rijks Museum");
-        setSize(900, 700);
+        setSize(1050, 850);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        searchBar = new JTextField(50);
+        searchBar = new JTextField(60);
         prevButton = new JButton("Previous Page");
         nextButton = new JButton("Next Page");
         JPanel top = new JPanel();
@@ -103,39 +103,31 @@ public class RijksSearchFrame extends JFrame {
     }
 
     private void handleResponse(ArtObjects artObjects) {
-        // Clear existing images
         imagePanel.removeAll();
 
-        // Check for empty response
         if (artObjects == null) {
             JLabel noResultsLabel = new JLabel("No results found for your search.");
             imagePanel.add(noResultsLabel);
             return;
         }
 
-        // Process artworks
         for (ArtObject art : artObjects.getArtObjects()) {
             try {
-                // Download and scale image
                 Image image = downloadAndScaleImage(art.webImage.url);
                 ImageIcon icon = new ImageIcon(image);
 
-                // Create label with tooltip and click listener
                 JLabel label = createArtLabel(art, icon);
 
                 imagePanel.add(label);
             } catch (IOException ex) {
-                // Handle download error (e.g., print message)
                 System.err.println("Error downloading image for " + art.title + ": " + ex.getMessage());
             }
         }
 
-        // Update panel display
         imagePanel.revalidate();
         imagePanel.repaint();
     }
 
-    // Helper methods (same as before)
     private Image downloadAndScaleImage(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
         Image image = ImageIO.read(url);
