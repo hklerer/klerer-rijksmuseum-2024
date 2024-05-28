@@ -105,7 +105,7 @@ public class RijksSearchFrame extends JFrame {
     private void handleResponse(ArtObjects artObjects) {
         imagePanel.removeAll();
 
-        if (artObjects.getArtObjects() == null) {
+        if (artObjects.getArtObjects() == null || artObjects.getArtObjects().length == 0) {
             JLabel noResultsLabel = new JLabel("No results found for your search.");
             imagePanel.add(noResultsLabel);
             return;
