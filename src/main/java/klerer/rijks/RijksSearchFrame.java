@@ -4,13 +4,18 @@ import com.andrewoid.ApiKey;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import klerer.rijks.json.RijksCollection;
+import klerer.rijks.json.ArtObject;
+import klerer.rijks.json.ArtObjects;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
 
 public class RijksSearchFrame extends JFrame {
     private RijksService rijksService;
@@ -19,8 +24,8 @@ public class RijksSearchFrame extends JFrame {
     private JButton nextButton;
     private JPanel imagePanel;
     private int currentPage = 1;
-    ApiKey apiKey = new ApiKey();
-    String keyString = apiKey.get();
+    private ApiKey apiKey = new ApiKey();
+    private String keyString = apiKey.get();
     private Disposable disposable;
 
     public RijksSearchFrame() {
@@ -97,8 +102,56 @@ public class RijksSearchFrame extends JFrame {
         }
     }
 
-    private void handleResponse(RijksCollection rijksCollection) {
+    private void handleResponse(ArtObjects artObjects) {
+        // Clear existing images
         imagePanel.removeAll();
+
+        // Check for empty response
+        if (artObjects == null) {
+            JLabel noResultsLabel = new JLabel("No results found for your search.");
+            imagePanel.add(noResultsLabel);
+            return;
+        }
+
+        // Process artworks
+        for (ArtObject art : artObjects.getArtObjects()) {
+            try {
+                // Download and scale image
+                Image image = downloadAndScaleImage(art.webImage.url);
+                ImageIcon icon = new ImageIcon(image);
+
+                // Create label with tooltip and click listener
+                JLabel label = createArtLabel(art, icon);
+
+                imagePanel.add(label);
+            } catch (IOException ex) {
+                // Handle download error (e.g., print message)
+                System.err.println("Error downloading image for " + art.title + ": " + ex.getMessage());
+            }
+        }
+
+        // Update panel display
+        imagePanel.revalidate();
+        imagePanel.repaint();
+    }
+
+    // Helper methods (same as before)
+    private Image downloadAndScaleImage(String imageUrl) throws IOException {
+        URL url = new URL(imageUrl);
+        Image image = ImageIO.read(url);
+        return image.getScaledInstance(200, -1, Image.SCALE_DEFAULT);
+    }
+
+    private JLabel createArtLabel(ArtObject art, ImageIcon icon) {
+        JLabel label = new JLabel(icon);
+        label.setToolTipText(art.title + " by " + art.principalOrFirstMaker);
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new ImageFrame(art.title, art.principalOrFirstMaker, art.webImage.url).setVisible(true);
+            }
+        });
+        return label;
     }
     public static void main(String[] args) {
         RijksSearchFrame frame = new RijksSearchFrame();

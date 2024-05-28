@@ -1,28 +1,27 @@
 package klerer.rijks;
 
 import io.reactivex.rxjava3.core.Single;
-import klerer.rijks.json.ArtObject;
-import klerer.rijks.json.RijksCollection;
+import klerer.rijks.json.ArtObjects;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RijksService {
 
     @GET("/api/en/collection")
-    Single<RijksCollection> pageNum(
+    Single<ArtObjects> pageNum(
             @Query("key") String apikey,
             @Query("p") int pageNum
     );
 
     @GET("/api/en/collection")
-    Single<RijksCollection> queryAndPageNum(
+    Single<ArtObjects> queryAndPageNum(
             @Query("key") String apikey,
             @Query("q") String query,
             @Query("p") int pageNum
             );
 
     @GET("/api/en/collection")
-    Single<RijksCollection> involvedMakerAndPageNum(
+    Single<ArtObjects> involvedMakerAndPageNum(
             @Query("key") String apikey,
             @Query("involvedMaker") String involvedMaker,
             @Query("p") int pageNum
