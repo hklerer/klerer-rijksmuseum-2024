@@ -90,7 +90,7 @@ public class RijksSearchFrame extends JFrame {
                             (response) -> handleResponse(response),
                             Throwable::printStackTrace);
         } else {
-            disposable = rijksService.queryAndPageNum(keyString, searchBar.getText(), currentPage)
+            disposable = rijksService.involvedMakerAndPageNum(keyString, searchBar.getText(), currentPage)
                     // tells Rx to request the data on a background Thread
                     .subscribeOn(Schedulers.io())
                     // tells Rx to handle the response on Swing's main Thread
