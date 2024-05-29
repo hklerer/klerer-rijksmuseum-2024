@@ -104,6 +104,8 @@ public class RijksSearchFrame extends JFrame {
 
     private void handleResponse(ArtObjects artObjects) {
         imagePanel.removeAll();
+        imagePanel.revalidate();
+        imagePanel.repaint();
 
         if (artObjects.getArtObjects() == null || artObjects.getArtObjects().length == 0) {
             JLabel noResultsLabel = new JLabel("No results found for your search.");
@@ -115,7 +117,6 @@ public class RijksSearchFrame extends JFrame {
             try {
                 Image image = downloadAndScaleImage(art.webImage.url);
                 ImageIcon icon = new ImageIcon(image);
-
                 JLabel label = createArtLabel(art, icon);
 
                 imagePanel.add(label);
@@ -123,9 +124,6 @@ public class RijksSearchFrame extends JFrame {
                 System.err.println("Error downloading image for " + art.title + ": " + ex.getMessage());
             }
         }
-
-        imagePanel.revalidate();
-        imagePanel.repaint();
     }
 
     private Image downloadAndScaleImage(String imageUrl) throws IOException {
