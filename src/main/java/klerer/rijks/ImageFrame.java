@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class ImageFrame extends JFrame {
     public ImageFrame(String title, String artist, String imageUrl) throws Exception {
-        setTitle(title + "by" + artist);
+        setTitle(title + " by " + artist);
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
